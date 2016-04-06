@@ -1,0 +1,12 @@
+com\frontController\model\Account.class
+com\frontController\model\DBConnection.class
+com\frontController\model\Address.class
+com\frontController\model\ProductDAO.class
+com\frontController\model\InvalidEmailOrPasswordExeption.class
+com\frontController\SpringWebConfig.class
+com\frontController\WebInitializer.class
+com\frontController\controller\HelloController.class
+com\frontController\model\AccountDAO.class
+com\frontController\model\EmailTakenExeption.class
+com\frontController\model\Product.class
+com\frontController\model\AddressDAO.class

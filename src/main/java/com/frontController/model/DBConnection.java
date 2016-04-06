@@ -1,5 +1,8 @@
 package com.frontController.model;
 import java.sql.SQLException;
+
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -9,7 +12,7 @@ public class DBConnection {
 	private static final String DB_PASS = "52659093";
 	private static final String DB_NAME = "mydb";
 	private static final String DB_PORT = "3306";
-	private static final String DB_HOST = "localhost";
+	private static final String DB_HOST = "127.0.0.1";
 
 	private static DBConnection instance = null;
 	private static Connection con;
