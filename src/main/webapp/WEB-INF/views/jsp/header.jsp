@@ -25,15 +25,27 @@
 
 <!-- Home page CSS -->
 <link href="css/shop-homepage.css" rel="stylesheet">
+<!-- Password Validation -->
+<link href="css/passwordConfirm.css" rel="stylesheet">
+
+<!-- Shop item page CSS -->
+<link href="css/shop-item.css" rel="stylesheet">
+
+<!-- Basket CSS -->
+<link href="css/basket.css" rel="stylesheet">
 
 <!-- Home and search js -->
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
-<script src="js/search.js"></script>
+
+<!-- Basket js -->
+<script src="js/basket.js"></script>
+
+<!-- Password validation -->
 <script src="js/validation.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<!--  <script src="js/bootstrap.min.js"></script>-->
+<script src="js/bootstrap.min.js"></script>
 
 <!--Fond for search and footer -->
 <link
@@ -103,8 +115,17 @@
 			</div>
 
 			<c:choose>
-				<c:when test="${not empty islogged}">
-					for logged user
+				<c:when test="${not empty account}">
+					
+					<div class="col-md-2">
+						<a href="./profile" class="btn btn-info btn-block">Моят профил</a>
+					</div>
+					<div class="col-md-2">
+					<a href="./logout" class="btn btn-info btn-block">Изход</a>
+					<a href="./basket" class="btn btn-info btn-block">Кошница</a>
+					
+						</div>
+						
 				</c:when>
 				<c:otherwise>
 					<div class="col-md-4">
@@ -144,10 +165,10 @@
 
 
 					<!--  TV -->
-					<li class="dropdown"><a href="./product_typeTV"
-						data-toggle="dropdown" class="dropdown-toggle">TV И ВИДЕО </a>
+					<li class="dropdown"><a href="./product_typeTV?type=TV">TV И ВИДЕО
+					</a>
 						<ul class="dropdown-menu columns" id="menu1">
-							<li><a href="#">ТЕЛЕВИЗОРИ <i class="icon-arrow-right"></i></a></li>
+							<li><a href="./product_listTV">ТЕЛЕВИЗОРИ <i class="icon-arrow-right"></i></a></li>
 							<li class="divider"></li>
 							<li><a href="#">ДОМАШНИ КИНА</a></li>
 							<li class="divider"></li>
@@ -163,8 +184,8 @@
 						</ul></li>
 
 					<!-- GSM -->
-					<li class="dropdown"><a href="./product_typeGSM"
-						data-toggle="dropdown" class="dropdown-toggle">GSM И ТАБЛЕТИ </a>
+					<li class="dropdown"><a href="./product_typeGSM" >GSM И
+							ТАБЛЕТИ </a>
 
 						<ul class="dropdown-menu columns" id="menu1">
 							<li><a href="#">МОБИЛНИ ТЕЛЕФОНИ </a></li>
@@ -179,8 +200,7 @@
 						</ul></li>
 
 					<!-- Photo -->
-					<li class="dropdown"><a href="./product_typePhoto"
-						data-toggle="dropdown" class="dropdown-toggle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ФОТО
+					<li class="dropdown"><a href="./product_typePhoto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ФОТО
 							И <br>ВИДЕО КАМЕРИ
 					</a>
 						<ul class="dropdown-menu columns" id="menu1">
@@ -198,15 +218,15 @@
 							<li><a href="./index"> <img alt="Logo"
 									src="images/main/searchVideo.jpg"></a></li>
 						</ul></li>
-
-					<li class="dropdown"><a href="./product_typeAuto"
-						data-toggle="dropdown" class="dropdown-toggle">АВТО И GPS </a>
+					<!-- Car accesories -->
+					<li class="dropdown"><a href="./product_typeAuto">АВТО И
+							GPS </a>
 						<ul class="dropdown-menu columns" id="menu1">
 							<li><a href="#">GPS НАВИГАЦИЯ </a></li>
 							<li class="divider"></li>
 							<li><a href="#">GPS АКСЕСОАРИ</a></li>
 							<li class="divider"></li>
-							<li><a href="#">CD/DVD РЕСИИВЪРИ</a></li>
+							<li><a href="./product_listDVD">CD/DVD РЕСИИВЪРИ</a></li>
 							<li class="divider"></li>
 							<li><a href="#">ГОВОРИТЕЛИ</a></li>
 							<li class="divider"></li>
@@ -216,9 +236,9 @@
 							<li><a href="./home.jsp"> <img alt="Logo"
 									src="images/main/searchAuto.jpg"></a></li>
 						</ul></li>
-
-					<li class="dropdown"><a href="./product_typeComp"
-						data-toggle="dropdown" class="dropdown-toggle">КОМПЮТРИ И <br>&nbsp;ПЕРИФЕРИЯ
+					<!--Computers -->
+					<li class="dropdown"><a href="./product_typeComp">КОМПЮТРИ
+							И <br>&nbsp;ПЕРИФЕРИЯ
 					</a>
 						<ul class="dropdown-menu columns" id="menu1">
 							<li><a href="#">ПРЕНОСИМИ КОМПЮТРИ </a></li>
@@ -242,9 +262,9 @@
 									src="images/main/searchComp.jpg"></a></li>
 						</ul></li>
 
-
-					<li class="dropdown"><a href="./product_typeCompAccesories"
-						data-toggle="dropdown" class="dropdown-toggle">КОМПЮТЪРНИ <br>&nbsp;&nbsp;&nbsp;АКСЕСОАРИ
+					<!-- Computer accesories -->
+					<li class="dropdown"><a href="./product_typeCompAccesories">КОМПЮТЪРНИ
+							<br>&nbsp;&nbsp;&nbsp;АКСЕСОАРИ
 					</a>
 						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
 							<li><a href="#">USB ПАМЕТИ </a></li>
@@ -268,8 +288,8 @@
 									src="images/main/searchCompAccesories.jpg"></a></li>
 						</ul></li>
 
-					<li class="dropdown"><a href="./product_typeGame"
-						data-toggle="dropdown" class="dropdown-toggle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ИГРИ
+					<!--Games-->
+					<li class="dropdown"><a href="./product_typeGame">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ИГРИ
 							И <br>ЗАБАВЛЕНИЯ
 					</a>
 						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
@@ -296,8 +316,8 @@
 									src="images/main/searchGame.jpg"></a></li>
 						</ul></li>
 
-					<li class="dropdown"><a href="#" data-toggle="dropdown"
-						class="dropdown-toggle">АУДИО</a>
+					<!-- Audio -->
+					<li class="dropdown"><a href="#">АУДИО</a>
 						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
 							<li><a href="#">АУДИО СИСТЕМИ </a></li>
 							<li class="divider"></li>
@@ -316,8 +336,7 @@
 						</ul></li>
 
 
-					<li class="dropdown"><a href="#" data-toggle="dropdown"
-						class="dropdown-toggle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;МАЛКИ<br>
+					<li class="dropdown"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;МАЛКИ<br>
 							ЕЛЕКТРОУРЕДИ
 					</a>
 						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
@@ -338,8 +357,7 @@
 									src="images/main/robot.png"></a></li>
 						</ul></li>
 
-					<li class="dropdown"><a href="#" data-toggle="dropdown"
-						class="dropdown-toggle">&nbsp;КЛИМАТИЦИ И <br>&nbsp;ОТОПЛИТЕЛИ
+					<li class="dropdown"><a href="#">&nbsp;КЛИМАТИЦИ И <br>&nbsp;ОТОПЛИТЕЛИ
 					</a>
 						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
 							<li><a href="#">ИНВЕРТОРНИ SPLIT СИСТЕМИ </a></li>

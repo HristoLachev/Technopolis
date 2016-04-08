@@ -3,36 +3,6 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags/form"%>
 <!-- Include header -->
 <%@include file="header.jsp"%>
-<script type="text/javascript">
-	function checkForm(form) {
-		  function checkPassword(str)
-		  {
-		    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-		    return re.test(str);
-		  }
-
-		  function checkForm(form)
-		  {
-		    if(form.email.value == "") {
-		      alert("Error: Email cannot be blank!");
-		      form.email.focus();
-		      return false;
-		    }
-		    if(form.password1.value != "" && form.password1.value == form.password2.value) {
-		      if(!checkPassword(form.password1.value)) {
-		        alert("The password you have entered is not valid!");
-		        form.password1.focus();
-		        return false;
-		      }
-		    } else {
-		      alert("Error: Please check that you've entered and confirmed your password!");
-		      form.password1.focus();
-		      return false;
-		    }
-		    return true;
-		  }
-	}
-</script>
 
 
 
@@ -64,15 +34,15 @@
 					</div>
 
 					<div class="form-group col-lg-6">
-						<label>Парола</label> <input type="password" name="password1"
-							class="form-control" id="password1" value="" />
+						<label>Парола</label> <spring:input type="password" name="password1"
+							class="form-control" id="password1" required="" value="" path="password"/>
 					</div>
 
 					<div class="form-group col-lg-6">
-						<label>Повторете паролата</label> <spring:input type="password"
+						<label>Повторете паролата</label> <input type="password"
 							name="password2" class="form-control" id="password2" path="password" required=""
 							value="" placeholder="Please confirm password!" 
-							 onchange="form.password2.pattern = this.value;"/>
+							 onchange="form.password2.pattern = this.value;">
 					</div>
 
 					<div class="form-group col-lg-6">

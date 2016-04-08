@@ -12,12 +12,29 @@
 
     var checkForm = function(e)
     {
-      if(this.email.value == "") {
-        alert("Error: Email cannot be blank!");
+    	
+    	re =/([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})/;
+      if(this.email.value == "" || !re.test(this.email.value)) {
+        alert("Error: Email cannot be blank or it may be incorrect!");
         this.email.focus();
         e.preventDefault(); // equivalent to return false
         return;
       }
+      
+      re = /[A-Za-z]/;
+      if(!re.test(this.firstName.value)) {
+        alert("Error: First name  must contain only letters!");
+        this.firstName.focus();
+        e.preventDefault();
+        return;
+      }
+      
+      if(!re.test(this.lastName.value)) {
+          alert("Error: Last name must contain only letters!");
+          this.lastName.focus();
+          e.preventDefault();
+          return;
+        }
       if(this.password1.value != "" && this.password1.value==this.password2.value) {
         if(!checkPassword(this.password1.value)) {
           alert("The password you have entered is not valid!");

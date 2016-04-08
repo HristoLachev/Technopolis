@@ -59,10 +59,10 @@
 
 		<div class="col-md-3 col-lg-3  col-sm-6 hero-feature">
 			<div class="thumbnail">
-				<a href="product_list"> <img src="images/auto/cd.jpg" alt=""></a>
+				<a href="product_listDVD"> <img src="images/auto/cd.jpg" alt=""></a>
 				<div class="caption">
 					<h3>
-						<a href="product_list">CD/DVD Ресиивъри</a>
+						<a href="product_listDVD">CD/DVD Ресиивъри</a>
 					</h3>
 				</div>
 			</div>
