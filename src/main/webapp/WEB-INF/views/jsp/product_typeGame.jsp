@@ -11,11 +11,8 @@
 	<header class="jumbotron hero-spacer">
 
 		<div class="thumbnail">
-			<a href="#"><img src="images/game/mainGame.jpg" alt=""></a>
+			<a href="./product?productId="><img src="images/game/mainGame.jpg" alt=""></a>
 		</div>
-		<p>
-			<a class="btn btn-primary btn-large">NEED TO CHANGE!</a>
-		</p>
 	</header>
 
 	<hr>
@@ -143,24 +140,6 @@
 					<h3>
 						<a href="product_list">Drones</a>
 					</h3>
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-		<div class="col-md-3 col-lg-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
 				</div>
 			</div>
 		</div>

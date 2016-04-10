@@ -22,8 +22,8 @@ public class AccountDAO {
 			Integer id = rs.getInt(1);
 			String firstName = rs.getString(2);
 			String lastName = rs.getString(3);
-			String phoneNumber = rs.getString(6);	
-			Account acc = new Account(id, firstName, lastName, email, password, phoneNumber,null,null);
+			String phoneNumber = rs.getString(6);
+			Account acc = new Account(id, firstName, lastName, email, password, phoneNumber, null, null);
 			ArrayList<Order> orderFalse = OrderDAO.getOrdersFalseForAccount(acc);
 			ArrayList<Order> orderTrue = OrderDAO.getOrdersTrueForAccount(acc);
 			acc.setOrdersFalse(orderFalse);
@@ -58,13 +58,48 @@ public class AccountDAO {
 
 	}
 
-	public static Account passwordChange(Account acc, String password) throws SQLException {
+	public static void passwordChange(Account acc, String password) throws SQLException {
 		PreparedStatement ps = con.prepareStatement("UPDATE accounts SET password=? WHERE idAccount=?;");
 		ps.setString(1, password);
 		ps.setInt(2, acc.getId());
 		ps.executeUpdate();
 		acc.setPassword(password);
-		return acc;
+
+	}
+
+	public static void firstNameChange(Account acc, String firstName) throws SQLException {
+		PreparedStatement ps = con.prepareStatement("UPDATE accounts SET first_name=? WHERE idAccount=?;");
+		ps.setString(1, firstName);
+		ps.setInt(2, acc.getId());
+		ps.executeUpdate();
+		acc.setFirstName(firstName);
+
+	}
+
+	public static void lastNameChange(Account acc, String lastName) throws SQLException {
+		PreparedStatement ps = con.prepareStatement("UPDATE accounts SET last_name=? WHERE idAccount=?;");
+		ps.setString(1, lastName);
+		ps.setInt(2, acc.getId());
+		ps.executeUpdate();
+		acc.setLastName(lastName);
+
+	}
+
+	public static void emailChange(Account acc, String email) throws SQLException {
+		PreparedStatement ps = con.prepareStatement("UPDATE accounts SET email=? WHERE idAccount=?;");
+		ps.setString(1, email);
+		ps.setInt(2, acc.getId());
+		ps.executeUpdate();
+		acc.setEmail(email);
+
+	}
+
+	public static void phoneNumberChange(Account acc, String phoneNumber) throws SQLException {
+		PreparedStatement ps = con.prepareStatement("UPDATE accounts SET phone_number=? WHERE idAccount=?;");
+		ps.setString(1, phoneNumber);
+		ps.setInt(2, acc.getId());
+		ps.executeUpdate();
+		acc.setPhoneNumber(phoneNumber);
 
 	}
 }

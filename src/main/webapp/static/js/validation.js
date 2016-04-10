@@ -48,7 +48,7 @@
         e.preventDefault();
         return;
       }
-      alert("Both email and password are VALID!");
+      
     };
 
     var myForm = document.getElementById("registerForm");

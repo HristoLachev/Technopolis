@@ -14,10 +14,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
+                        <th>Продукт</th>
+                        <th>Количество</th>
+                        <th class="text-center">Цена</th>
+                         <th class="text-center">Обща цена</th>
+                       
                         <th> </th>
                     </tr>
                 </thead>
@@ -26,17 +27,19 @@
 							
 							List<Product> products = account.getBasket();
 							Integer totalPrice=0;
+							session.setAttribute("totalPrice", totalPrice);
 						for(Product product : products){
 							request.setAttribute("Id", product.getId());
 							request.setAttribute("image", product.getImage());
 							request.setAttribute("price", product.getPrice());
 							request.setAttribute("name", product.getName());
-							totalPrice+=product.getPrice();
+							request.setAttribute("quantity", product.getQuantity());
+							totalPrice+=product.getPrice()*product.getQuantity();
 							%>
 						
 						<jsp:include page="product_basket_template.jsp"></jsp:include>
 						
-						<%} %>
+					<%}session.setAttribute("totalPrice", totalPrice); %>
                     <tr>
                         <td>   </td>
                         <td>   </td>
@@ -47,7 +50,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong><%=totalPrice %></strong></h3></td>
+                        <td class="text-right" id="totalPrice"><h3><strong><%=session.getAttribute("totalPrice")%>лв.</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>

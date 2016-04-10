@@ -2,15 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags/form"%>
 
-<!-- Include header -->
-<jsp:include page="${request.contextPath}/header"></jsp:include>
-<body>
+<!-- Include Header -->
+<%@include file="header.jsp"%>
+
 
 
 
 	<!-- Login form -->
 	<div class="row">
-		<div class="col-md-8 col-lg-8 col-sm-8">
+		<div class="col-md-12 col-lg-12 col-sm-12">
 			<div id="login-overlay" class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -20,7 +20,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-6 col-lg-6 ">
 								<div class="well">
 									<spring:form id="loginForm" method="POST" action="./login"
 										novalidate="novalidate" commandName="account">
@@ -45,18 +45,13 @@
 											username or password</div>
 											
 										<div class="checkbox">
-											<label> <input type="checkbox" name="remember"
-												id="remember"> Запомни ме!
-											</label>
-											<p class="help-block">(if this is a private computer)</p>
 										</div>
 										<button type="submit" class="btn btn-success btn-block">Вход</button>
-										<!--  	<a href="/forgot/" class="btn btn-default btn-block">Help
-											to login</a>-->
+										
 									</spring:form>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6 col-lg-6">
 								<p class="lead">
 									Регистрирай се <span class="text-success">СЕГА</span>
 								</p>
@@ -68,8 +63,8 @@
 									<li><span class="fa fa-check text-success"></span> Лесно и
 										удобно</li>
 									<li>&nbsp;</li>
-									<li>&nbsp;</li>
-									<li>&nbsp;</li>
+							
+								
 
 
 								</ul>

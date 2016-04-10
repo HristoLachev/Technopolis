@@ -18,9 +18,15 @@ import frontController.model.InvalidEmailOrPasswordExeption;
 @Controller
 public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
-		model.addAttribute("account", new Account());
-		return "login";
+	public String login(Model model, HttpSession session) {
+		try {
+			model.addAttribute("account", new Account());
+			return "login";
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.setAttribute("exception", "The server has encountered a problem,please try again later");
+			return "exeption";
+		}
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -31,22 +37,18 @@ public class LoginController {
 			session.setAttribute("account", gotten);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			session.setAttribute("exeption", e);
+			session.setAttribute("exeption", "Database isn't working now,please try again later");
 			return "exeption";
 		} catch (InvalidEmailOrPasswordExeption e) {
 			e.printStackTrace();
-			session.setAttribute("exeption", e);
+			session.setAttribute("exeption", "Invalid email or password,try again");
+			return "exeption";
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.setAttribute("exception", "The server has encountered a problem,please try again later");
 			return "exeption";
 		}
 		return "home";
 
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model, HttpSession session) {
-		session.setAttribute("islogged", null);
-		session.setAttribute("account", null);
-
-		return "home";
 	}
 }

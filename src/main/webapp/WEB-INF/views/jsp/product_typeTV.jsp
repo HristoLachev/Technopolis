@@ -14,9 +14,6 @@
 		<div class="thumbnail">
 			<a href="#"><img src="images/mainTV.jpg" alt=""></a>
 		</div>
-		<p>
-			<a class="btn btn-primary btn-large">NEED TO CHANGE!</a>
-		</p>
 	</header>
 
 	<hr>

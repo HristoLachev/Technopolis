@@ -95,11 +95,12 @@ public class DataBaseTest {
 	// }
 	// }
 
-	@Test
-	public void testPassChange() throws SQLException {
-		AccountDAO.passwordChange(new Account(4, "asd", "fasd", null, null, null, null, null), "piJITKA");
+	// @Test
+	// public void testPassChange() throws SQLException {
+	// AccountDAO.passwordChange(new Account(4, "asd", "fasd", null, null, null,
+	// null, null), "piJITKA");
 
-	}
+	// }
 
 	// @Test
 	// public void testexecuteOrder() throws SQLException,
@@ -115,5 +116,15 @@ public class DataBaseTest {
 	// OrderDAO.executeOrder(acc, AddressDAO.getAddress(2));
 
 	// }
+
+	@Test
+	public void testsys() throws SQLException {
+		StringBuilder info = new StringBuilder("kura");
+		System.out.println("kur s '\n musaka");
+		for (int i = 0; i < 3; i++) {
+			info.append(i);
+		}
+		System.out.println(info);
+	}
 
 }

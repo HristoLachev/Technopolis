@@ -1,163 +1,103 @@
 
-     <!-- Include Header -->
+
+<%@page import="frontController.model.ProductDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="frontController.model.Product"%>
-<%@include file="header.jsp" %>	
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!-- Include Header -->
+<%@include file="header.jsp"%>
+
 <body>
 
 
 
-    <!-- Page Content -->
- 
-        <div class="row">
+	<!-- Page Content -->
 
-            <div class="col-md-9">
- <%Product product = (Product)session.getAttribute("productId"); %>
-                <div class="thumbnail">
-                    <img src="<%=product.getImage()%>" style = " width: 250px;">
-                    <div class="caption-full">
-                   
-                        <h4 class="pull-right"><%=product.getPrice() %></h4>
-                        <h4><a href="#"><%=product.getName() %></a>
-                        </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
-                </div>
+	<div class="row">
 
-                <div class="well">
+		<div class="col-md-12">
+			<%
+				Product product = (Product) session.getAttribute("productId");
+				ArrayList<String> descriptions = product.getDescriptions();
+			%>
+			<div class="thumbnail">
+				<img src="<%=product.getImage()%>" style="width: 250px;">
+				<div class="caption-full">
 
-                    <div class="row">
+					<h4 class="pull-right"><%=product.getPrice()%>лв.
+					</h4>
+					<h4>
+						<a href="#"><%=product.getName()%></a>
+					</h4>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
-                                </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+					<p>
+						<%
+							for (String description : descriptions) {
+								
+								request.setAttribute("description", description);
+						%>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Second Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+						<jsp:include page="description.jsp"></jsp:include>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$74.99</h4>
-                                <h4><a href="#">Third Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+						<%
+							}
+							session.setAttribute("productList", ProductDAO.getProductsByType("New"));
+						%>
+					</p>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4><a href="#">Fourth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+				</div>
+				<div class="ratings">
+					<p class="pull-right">
+						<a class="btn btn-primary" onclick=" addedToCart()"
+							href="./buyProduct?productId=<%=product.getId()%>">Купи сега!</a>
+					</p>
+					<p>
+						<span class="glyphicon glyphicon-star"></span> <span
+							class="glyphicon glyphicon-star"></span> <span
+							class="glyphicon glyphicon-star"></span> <span
+							class="glyphicon glyphicon-star"></span> <span
+							class="glyphicon glyphicon-star-empty"></span> 4.0 stars
+					</p>
+				</div>
+			</div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+			<div class="well">
 
-                </div>
+				<div class="row">
 
-            </div>
+					<%
+						List<Product> products = (ArrayList<Product>) session.getAttribute("productList");
+						for (Product product1 : products) {
+							if (product1 != null) {
+								request.setAttribute("Id", product1.getId());
+								request.setAttribute("image", product1.getImage());
+								request.setAttribute("price", product1.getPrice());
+								request.setAttribute("name", product1.getName());
+								request.setAttribute("information", product1.getInformation());
+							}
+					%>
 
-        </div>
+					<jsp:include page="shop_item_template.jsp"></jsp:include>
 
-    </div>
- <%@include file="footer.jsp" %>	
+					<%
+						}
+						session.setAttribute("productList", ProductDAO.getProductsByType("New"));
+					%>
+
+
+
+
+
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<%@include file="footer.jsp"%>

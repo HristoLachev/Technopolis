@@ -81,11 +81,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">ПРОМОЦИИ</a></li>
+					<li><a href="./promotions">ПРОМОЦИИ</a></li>
 					<li><a href="#">КОМПАНИЯ</a></li>
-					<li><a href="#">РАБОТИ ПРИ НАС</a></li>
-					<li><a href="#">ПОКУПКИ НА ИЗПЛАЩАНЕ</a></li>
-					<li><a href="#">ВЗЕМИ ОТ МАГАЗИН</a></li>
 					<li><a href="#">КОНТАКТИ</a></li>
 
 
@@ -115,16 +112,17 @@
 			</div>
 
 			<c:choose>
-				<c:when test="${not empty account}">
+				<c:when test="${not empty account  && not empty islogged}">
 					
 					<div class="col-md-2">
 						<a href="./profile" class="btn btn-info btn-block">Моят профил</a>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-1">
+					<a href="./basket" class="btn btn-info btn-block"><img alt="cart" src="images/cart.png"></a>
+					</div>
+					<div class="col-md-1">
 					<a href="./logout" class="btn btn-info btn-block">Изход</a>
-					<a href="./basket" class="btn btn-info btn-block">Кошница</a>
-					
-						</div>
+					</div>
 						
 				</c:when>
 				<c:otherwise>
@@ -149,7 +147,7 @@
 
 
 	<nav class="navbar navbar-default" role="navigation">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-2">
@@ -163,9 +161,13 @@
 				id="bs-example-navbar-collapse-2">
 				<ul class="nav nav-pills">
 
+	<li class="dropdown">&nbsp;<li>
+	<li class="dropdown">&nbsp;<li>
+	<li class="dropdown">&nbsp;<li>
+					
 
 					<!--  TV -->
-					<li class="dropdown"><a href="./product_typeTV?type=TV">TV И ВИДЕО
+					<li class="dropdown"><a href="./product_typeTV">TV И ВИДЕО
 					</a>
 						<ul class="dropdown-menu columns" id="menu1">
 							<li><a href="./product_listTV">ТЕЛЕВИЗОРИ <i class="icon-arrow-right"></i></a></li>
@@ -336,63 +338,9 @@
 						</ul></li>
 
 
-					<li class="dropdown"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;МАЛКИ<br>
-							ЕЛЕКТРОУРЕДИ
-					</a>
-						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
-							<li><a href="#">МИКРОВЪЛНОВИ </a></li>
-							<li class="divider"></li>
-							<li><a href="#">ПРАХОСМУКАЧКИ</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ЗА КУХНЯТА</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ЗА ТЯЛОТО</a><br /> &nbsp;</li>
-							<li><a href="#">ЗА ГЛАДЕНЕ </a></li>
-							<li class="divider"></li>
-							<li><a href="#">ЗА ЗДРАВЕТО</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ЗА БЕБЕТО</a></li>
 
-							<li><a href="./home.jsp"> <img alt="Logo"
-									src="images/main/robot.png"></a></li>
-						</ul></li>
+				
 
-					<li class="dropdown"><a href="#">&nbsp;КЛИМАТИЦИ И <br>&nbsp;ОТОПЛИТЕЛИ
-					</a>
-						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
-							<li><a href="#">ИНВЕРТОРНИ SPLIT СИСТЕМИ </a></li>
-							<li class="divider"></li>
-							<li><a href="#">ПРОФЕСИОНАЛНА КЛИМАТИЧНА ТЕХНИКА</a></li>
-							<li class="divider"></li>
-							<li><a href="#">МОБИЛНИ КЛИМАТИЦИ</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ОТОПЛИТЕЛИ</a><br /> &nbsp;</li>
-							<li><a href="#">ВЕНТИЛАТОРИ</a></li>
-							<li class="divider"></li>
-
-							<li><a href="./home.jsp"> <img alt="Logo"
-									src="images/main/robot.png"></a></li>
-						</ul></li>
-
-					<li class="dropdown"><a href="#" data-toggle="dropdown"
-						class="dropdown-toggle">&nbsp;&nbsp;ДОМАКИНСКИ<br>ЕЛЕТРОУРЕДИ
-					</a>
-						<ul class="dropdown-menu columns dropdown-menu-right" id="menu1">
-							<li><a href="#">ПЕРАЛНИ </a></li>
-							<li class="divider"></li>
-							<li><a href="#">СУШИЛНИ</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ХЛАДИЛНИЦИ</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ФРИЗЕРИ</a><br /> &nbsp;</li>
-							<li><a href="#">СЪДОМИЯЛНИ</a></li>
-							<li class="divider"></li>
-							<li><a href="#">ГОТВАРСКИ ПЕЧКИ</a></li>
-							<li><a href="#">УРЕДИ ЗА ВГРАЖДАНЕ</a></li>
-
-							<li><a href="./home.jsp"> <img alt="Logo"
-									src="images/main/robot.png"></a></li>
-						</ul></li>
 
 
 				</ul>

@@ -98,6 +98,7 @@ public class AddressDAO {
 	public static ArrayList<Address> getAdressForAccount(Account acc) throws SQLException {
 		PreparedStatement ps = con.prepareStatement(
 				"SELECT a.* FROM accounts join accounts_has_addresses on(idAccount=Accounts_idAccount) join addresses a on(Addresses_idAddress=idAddress) where idAccount=?");
+		ps.setInt(1, acc.getId());
 		ResultSet rs = ps.executeQuery();
 		ArrayList<Address> addresses = new ArrayList<Address>();
 		while (rs.next()) {

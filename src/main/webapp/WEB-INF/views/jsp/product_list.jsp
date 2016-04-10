@@ -1,10 +1,11 @@
+<%@page import="frontController.model.ProductDAO"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="frontController.model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- Include header -->
 <%@include file="header.jsp"%>
@@ -20,9 +21,33 @@
 			<div class="col-md-3">
 				<p class="lead">Shop Name</p>
 				<div class="list-group">
-					<a href="#" class="list-group-item">Category 1</a> <a href="#"
-						class="list-group-item">Category 2</a> <a href="#"
-						class="list-group-item">Category 3</a>
+					<form action="./searchByPrice" method="post">
+					<a class="list-group-item">Максимална цена:
+						
+						<input type="text" class="form-control" name="price"
+						placeholder="Search term..."> <span
+						class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+					
+						</a>
+						</form>
+					<form action="./search" method="post">
+					<a class="list-group-item">Модел:
+						
+						<input type="text" class="form-control" name="search"
+						placeholder="Search term..."> <span
+						class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+					
+						</a>
+						</form>
+						
 				</div>
 			</div>
 
@@ -46,22 +71,8 @@
 						
 						<jsp:include page="product_list_template.jsp"></jsp:include>
 						
-						<%} %>
+						<%} session.setAttribute("productList",  ProductDAO.getProductsByType("New"));%>
 
-						<div class="col-sm-4 col-lg-4 col-md-4">
-							<h4>
-								<a href="#">Like this template?</a>
-							</h4>
-							<p>
-								If you like this template, then check out <a target="_blank"
-									href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this
-									tutorial</a> on how to build a working review system for your
-								online store!
-							</p>
-							<a class="btn btn-primary" target="_blank"
-								href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View
-								Tutorial</a>
-						</div>
 
 					</div>
 
@@ -70,6 +81,8 @@
 			</div>
 
 		</div>
+	</div>
+	</div>
 	</div>
 	<!-- /.container -->
 

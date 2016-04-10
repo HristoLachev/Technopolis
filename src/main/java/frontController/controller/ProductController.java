@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import frontController.model.ProductDAO;
 
 @Controller
@@ -16,7 +18,10 @@ public class ProductController {
 		try {
 			session.setAttribute("productId", ProductDAO.getProductById(id));
 		} catch (SQLException e) {
-			session.setAttribute("exeption", e);
+			session.setAttribute("exeption", "Database isn't working now,please try again later");
+			return "exeption";
+		} catch (Exception e) {
+			session.setAttribute("exeption", "The server has encountered a problem,please try again later");
 			return "exeption";
 		}
 		return "shop_item";
@@ -27,18 +32,24 @@ public class ProductController {
 		try {
 			session.setAttribute("productList", ProductDAO.getProductsByType("Телевизор"));
 		} catch (SQLException e) {
-			session.setAttribute("exeption", e);
+			session.setAttribute("exeption", "Database isn't working now,please try again later");
+			return "exeption";
+		} catch (Exception e) {
+			session.setAttribute("exeption", "The server has encountered a problem,please try again later");
 			return "exeption";
 		}
 		return "product_list";
 	}
-	
+
 	@RequestMapping(value = "/product_listTV", method = RequestMethod.GET)
 	public String productViewTV(HttpSession session) {
 		try {
 			session.setAttribute("productList", ProductDAO.getProductsByType("Телевизор"));
 		} catch (SQLException e) {
-			session.setAttribute("exeption", e);
+			session.setAttribute("exeption", "Database isn't working now,please try again later");
+			return "exeption";
+		} catch (Exception e) {
+			session.setAttribute("exeption", "The server has encountered a problem,please try again later");
 			return "exeption";
 		}
 		return "product_list";
@@ -49,7 +60,10 @@ public class ProductController {
 		try {
 			session.setAttribute("productList", ProductDAO.getProductsByType("DVD"));
 		} catch (SQLException e) {
-			session.setAttribute("exeption", e);
+			session.setAttribute("exeption", "Database isn't working now,please try again later");
+			return "exeption";
+		} catch (Exception e) {
+			session.setAttribute("exeption", "The server has encountered a problem,please try again later");
 			return "exeption";
 		}
 		return "product_list";
@@ -90,7 +104,5 @@ public class ProductController {
 	public String productListGame() {
 		return "product_typeGame";
 	}
-
-
 
 }

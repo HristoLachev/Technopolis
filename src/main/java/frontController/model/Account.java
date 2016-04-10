@@ -39,10 +39,11 @@ public class Account {
 	public ArrayList<Order> getOrdersFalse() {
 		return ordersFalse;
 	}
+
 	public ArrayList<Order> getOrdersTrue() {
 		return ordersTrue;
 	}
-	
+
 	public void setOrdersFalse(ArrayList<Order> ordersFalse) {
 		this.ordersFalse = ordersFalse;
 	}
@@ -126,6 +127,17 @@ public class Account {
 
 	public void setBasket(ArrayList<Product> basket) {
 		this.basket = basket;
+	}
+
+	public void removeFromBasket(Product p) {
+		basket.remove(p);
+	}
+
+	public void printProducts() {
+		for (Product p : basket) {
+			System.out.println(p);
+		}
+
 	}
 
 }

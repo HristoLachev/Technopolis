@@ -14,7 +14,7 @@ public class ProductDAO {
 		ArrayList<Product> products = new ArrayList<Product>();
 		String defaultSearch = "SELECT * FROM Products WHERE idProduct is not null";
 		if (type != null) {
-			defaultSearch = defaultSearch.concat(" AND name like('" + type + "%')");
+			defaultSearch = defaultSearch.concat(" AND name like('%" + type + "%')");
 		}
 		if (model != null) {
 			defaultSearch = defaultSearch.concat(" AND name like('%" + model + "%')");
@@ -43,7 +43,7 @@ public class ProductDAO {
 
 	public static ArrayList<Product> getProductsByType(String type) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE name like('" + type + "%');");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE name like('%" + type + "%');");
 		ResultSet rs = ps.executeQuery();
 		while (rs.next() == true) {
 			Product toBeInserted = new Product();
@@ -108,6 +108,7 @@ public class ProductDAO {
 			product.setPrice(rs.getInt(3));
 			product.setQuantity(rs.getInt(4));
 			product.setImage(rs.getString(5));
+			setDescriptions(product);
 			return product;
 		}
 
@@ -115,6 +116,35 @@ public class ProductDAO {
 
 	}
 
+	public static Product buyProduct(Integer id) throws SQLException, ProductOutOfQuantityException {
+		 PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE idProduct=?");
+		  ps.setInt(1, id);
+		  ResultSet rs = ps.executeQuery();
+		  if (rs.next() == true) {
+		   Product product = new Product();
+		   product.setId(rs.getInt(1));
+		   product.setName(rs.getString(2));
+		   product.setPrice(rs.getInt(3));
+		   product.setQuantity(rs.getInt(4));
+		   product.setImage(rs.getString(5));
+		   if(product.getQuantity()==0){
+		    throw new ProductOutOfQuantityException();   
+		   }
+		   else{
+		    product.setQuantity(1);
+		    Integer newQuantity=rs.getInt(4)-1;
+		    PreparedStatement reduceQuantity=con.prepareStatement("UPDATE products SET quantity=? where idProduct=?");
+		    reduceQuantity.setInt(1, newQuantity);
+		    reduceQuantity.setInt(2, id);
+		    reduceQuantity.executeUpdate();
+		   }
+		   return product;
+		  }
+
+		  return null;
+
+	}
+	
 	public static void setDescriptions(Product product) throws SQLException {
 		PreparedStatement ps = con.prepareStatement(
 				"SELECT description FROM products" + " join products_has_descriptions on(idProduct=products_idProduct)"

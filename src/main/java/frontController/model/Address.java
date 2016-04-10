@@ -88,11 +88,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return"адрес:" + location + "град:" + city + " пощенски код:" + postCode
-				+ " Име:" + firstName + " Фамилно име:" + lastName + " Телефонен номер:" + phoneNumber + "]";
+		return city + "," + location;
 	}
-	
-	
-	
 
 }
