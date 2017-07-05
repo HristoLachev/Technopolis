@@ -12,7 +12,7 @@ public class ProductDAO {
 	public static ArrayList<Product> getProducts(String type, String model, Integer min, Integer max)
 			throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		String defaultSearch = "SELECT * FROM Products WHERE idProduct is not null";
+		String defaultSearch = "SELECT * FROM products WHERE idProduct is not null";
 		if (type != null) {
 			defaultSearch = defaultSearch.concat(" AND name like('%" + type + "%')");
 		}
@@ -43,7 +43,7 @@ public class ProductDAO {
 
 	public static ArrayList<Product> getProductsByType(String type) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE name like('%" + type + "%');");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM products WHERE name like('%" + type + "%');");
 		ResultSet rs = ps.executeQuery();
 		while (rs.next() == true) {
 			Product toBeInserted = new Product();
@@ -61,7 +61,7 @@ public class ProductDAO {
 
 	public static ArrayList<Product> getProductsByModel(String model) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE name like('%" + model + "%');");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM products WHERE name like('%" + model + "%');");
 		ResultSet rs = ps.executeQuery();
 		while (rs.next() == true) {
 			Product toBeInserted = new Product();
@@ -79,7 +79,7 @@ public class ProductDAO {
 
 	public static ArrayList<Product> getProductsByPrice(Integer min, Integer max) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE price>? nad price<?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM products WHERE price>? nad price<?");
 		ps.setInt(1, min);
 		ps.setInt(1, max);
 		ResultSet rs = ps.executeQuery();
@@ -98,7 +98,7 @@ public class ProductDAO {
 	}
 
 	public static Product getProductById(Integer id) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE idProduct=?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM products WHERE idProduct=?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next() == true) {
@@ -117,7 +117,7 @@ public class ProductDAO {
 	}
 
 	public static Product buyProduct(Integer id) throws SQLException, ProductOutOfQuantityException {
-		 PreparedStatement ps = con.prepareStatement("SELECT * FROM Products WHERE idProduct=?");
+		 PreparedStatement ps = con.prepareStatement("SELECT * FROM products WHERE idProduct=?");
 		  ps.setInt(1, id);
 		  ResultSet rs = ps.executeQuery();
 		  if (rs.next() == true) {
